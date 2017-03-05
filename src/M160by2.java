@@ -18,7 +18,6 @@ import com.jaunt.NotFound;
 import com.jaunt.ResponseException;
 import com.jaunt.UserAgent;
 import com.jaunt.component.Form;
-import sun.management.resources.agent;
 
 /**
  * Created by sachin on 9/4/16.
@@ -38,7 +37,7 @@ public class M160by2 {
      * @throws NotFound
      */
     public void login(String username,String Password) throws ResponseException, NotFound {
-
+        //TODO: return an appropriate value for success/error
         agent=new UserAgent();
         agent.visit("http://www.160by2.com/Index");
         Form form=agent.doc.getForm(0);
@@ -59,14 +58,13 @@ public class M160by2 {
      * @throws ResponseException
      */
     public void sendSMS(String message,String Phone_No) throws NotFound, ResponseException {
-
+        //TODO: return an appropriate value for success/error
         sms.setTextField(sms.getElement().findFirst("<input type=\"text\" placeholder=\"Enter Mobile Number or Name\"").getAt("name"),Phone_No);
         sms.setTextArea("sendSMSMsg",message);
         sms.setHidden("maxwellapps",Token);
         sms.setHidden("hid_exists","no");
         sms.setAction("http://www.160by2.com/"+sms.getElement().findFirst("<input type=\"hidden\" id=\"fkapps\"").getAt("value"));
         sms.submit();
-        System.out.println(agent.doc.innerHTML());
     }
 
 }
